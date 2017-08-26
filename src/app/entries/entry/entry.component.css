@@ -24,3 +24,12 @@ img {
     padding: 0px;
     display: block;
 }
+
+.actions {
+    padding: 1 em 0;
+
+}
+
+.liked {
+    color: red;
+}
