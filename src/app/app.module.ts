@@ -1,15 +1,20 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
-import { EntryListComponent, EntryComponent } from './entries';
+import { EntryListComponent, EntryComponent, EntryService } from './entries';
 
 
 @NgModule({                      //decorator used for post processor
-    imports: [BrowserModule],
+    imports: [
+        BrowserModule,
+        HttpModule
+    ],
+    providers: [EntryService],
     declarations: [
         AppComponent,
         EntryComponent,         // Always put child component first
-        EntryListComponent  
+        EntryListComponent
     ],   // Declaration is for registering all of app coponents 
     bootstrap: [AppComponent]   // tells compiler to start appcompoent at lauch . A collection of top level components that acts as an entry point of of app.
 
