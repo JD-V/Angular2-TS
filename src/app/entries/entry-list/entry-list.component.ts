@@ -1,5 +1,7 @@
-import { Component } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import { Http } from '@angular/http'
+import { EntryService } from '../shared/entry.service'
+import { Entry } from '../shared/entry.model';
 
 @Component({
     selector: 'app-entry-list',
@@ -7,11 +9,16 @@ import { Http } from '@angular/http'
     styleUrls: ['entry-list.component.css']
 })
 
-export class EntryListComponent {
-
-    constructor(http: Http) {
-        http.get('/app/entries').toPromise()
-            .then(response=> { debugger}, error=>{debugger});
+export class EntryListComponent implements OnInit {
+    entries: Entry[];
+    constructor(private entryService  : EntryService ) {
+        
+    }
+    
+    ngOnInit() {
+        this.entryService
+            .getEntries()
+            .then(entries=> this.entries = entries);
     }
     
 }
