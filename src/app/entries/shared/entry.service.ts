@@ -9,6 +9,11 @@ export class EntryService  {
         // if no access modifier specified http service will be avaiable only inside the constructor
     }
 
+    addComment(entryID: number, comment : {name: string, comment:string}) {
+        return this.http.post(`/app/entries/${entryID}/comments`, comment)
+                        .toPromise();
+    }
+
     getEntries(): Promise<Entry[]> {
         return this.http.get('/app/entries')
                         .toPromise()

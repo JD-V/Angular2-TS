@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { EntryService } from '../shared/entry.service';
 // EventEmitter is a way to pass data between two components  
 // One components send the data while other receives it.
 
@@ -14,12 +15,22 @@ import { NgForm } from '@angular/forms';
 export class EntryCommentFormComponent {
     name: string = "";
     comment:  string = "";
+    @Input() entryId : number;
     @Output() onCommentAdded =  new EventEmitter<{name: string, comment: string}>();
     @ViewChild('commentForm') commentForm : NgForm;
+
+    constructor(private entryService: EntryService){};  //private will  make the property available in the instance of the class
+
+
     onSubmit( commentForm :  NgForm) {
         let comment = {name: this.name, comment: this.comment};
-        this.onCommentAdded.emit(comment);
-        this.commentForm.resetForm();
+
+        this.entryService.addComment(this.entryId,comment)
+            .then(() =>{
+                this.onCommentAdded.emit(comment);
+                this.commentForm.resetForm();
+            });
+        
         //debugger; // debug point
     }
 }
