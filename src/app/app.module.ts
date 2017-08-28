@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-import { EntryListComponent, EntryComponent, EntryService } from './entries';
+import { EntryListComponent, EntryComponent, EntryService, EntryCommentFormComponent } from './entries';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryEntryService } from './backend';
 
@@ -18,7 +18,8 @@ import { InMemoryEntryService } from './backend';
     declarations: [
         AppComponent,
         EntryComponent,         // Always put child component first
-        EntryListComponent
+        EntryListComponent,
+        EntryCommentFormComponent
     ],   // Declaration is for registering all of app coponents 
     bootstrap: [AppComponent]   // tells compiler to start appcompoent at lauch . A collection of top level components that acts as an entry point of of app.
 
