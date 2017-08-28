@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 // EventEmitter is a way to pass data between two components  
 // One components send the data while other receives it.
 
@@ -14,10 +15,11 @@ export class EntryCommentFormComponent {
     name: string = "";
     comment:  string = "";
     @Output() onCommentAdded =  new EventEmitter<{name: string, comment: string}>();
-    // @ViewChild('commentForm') commentForm : ngForm;
-    onSubmit() {
+    @ViewChild('commentForm') commentForm : NgForm;
+    onSubmit( commentForm :  NgForm) {
         let comment = {name: this.name, comment: this.comment};
         this.onCommentAdded.emit(comment);
+        this.commentForm.resetForm();
         //debugger; // debug point
     }
 }

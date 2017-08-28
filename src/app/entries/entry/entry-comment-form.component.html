@@ -1,4 +1,4 @@
-<form (submit) = "onSubmit()" >    <!-- #commentForm="ngForm" local variable stat with pound(#) sign -->
+<form (submit) = "onSubmit()" #commentForm="ngForm">    <!-- local variable stat with pound(#) sign -->
     <div>
         <label for="name">Name </label>
         <input type="text" name="name" [(ngModel)]="name" />
